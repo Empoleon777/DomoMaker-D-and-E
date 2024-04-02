@@ -19,8 +19,7 @@ const makeDomo = async (req, res) => {
     const newDomo = new Domo(domoData);
     await newDomo.save();
     return res.status(201).json({ name: newDomo.name, age: newDomo.age });
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err);
     if (err.code === 11000) {
       return res.status(400).json({ error: 'Domo already exists!' });
@@ -44,5 +43,5 @@ const getDomos = async (req, res) => {
 module.exports = {
   makerPage,
   makeDomo,
-  getDomos
+  getDomos,
 };

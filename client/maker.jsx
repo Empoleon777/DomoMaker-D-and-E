@@ -62,7 +62,7 @@ const DomoList = (props) => {
     );
 }
 
-const loadDomosFromServer = async() => {
+const loadDomosFromServer = async () => {
     const response = await fetch('/getDomos');
     const data = await response.json();
     ReactDOM.render(

@@ -62,10 +62,10 @@ const LoginWindow = (props) => {
 
 const SignupWindow = (props) => {
     return (
-        <form id="loginForm"
-            name="loginForm"
+        <form id="signupForm"
+            name="signupForm"
             onSubmit={handleSignup}
-            action="/login"
+            action="/signup"
             method="POST"
             className="mainForm"
         >
