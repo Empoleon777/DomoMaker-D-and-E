@@ -47,7 +47,8 @@ const signup = async (req, res) => {
     await newAccount.save();
     req.session.account = Account.toAPI(newAccount);
     return res.json({ redirect: '/maker' });
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
     if (err.code === 11000) {
       return res.status(400).json({ error: 'Username already in use!' });
@@ -71,15 +72,15 @@ const changePassword = async (req, res) => {
   }
 
   try {
-    await Account.changePassword(username, oldpass, newpass, (err, account) => {
+    return Account.changePassword(username, oldpass, newpass, (err, account) => {
       if (err || !account) {
         return res.status(401).json({ error: 'Wrong username or password!' });
       }
 
       req.session.account = Account.toAPI(account);
 
-      logout();
-      return res.json({ redirect: '/login' });
+      req.session.destroy();
+      return res.json({ redirect: '/' });
     });
   }
   catch (err) {
