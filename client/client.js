@@ -4,6 +4,7 @@
 const init = () => {
   const signupForm = document.getElementById('signupForm');
   const loginForm = document.getElementById('loginForm');
+  const changePasswordForm = document.getElementById('changePasswordForm');
   const domoForm = document.getElementById('domoForm');
   const domoMessage = document.getElementById('domoMessage');
 
@@ -55,6 +56,31 @@ const init = () => {
       }
 
       sendPost(loginForm.getAttribute('action'), { username, pass });
+      return false;
+    });
+  }
+
+  if (changePasswordForm) {
+    changePasswordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      domoMessage.classList.add('hidden');
+
+      const username = changePasswordForm.querySelector('#user').value;
+      const oldpass = changePasswordForm.querySelector('#oldpass').value;
+      const newpass = changePasswordForm.querySelector('#newpass').value;
+      const newpass2 = changePasswordForm.querySelector('#newpass2').value;
+
+      if (!username || !oldpass || !newpass || !newpass2) {
+        handleError('All fields are required!');
+        return false;
+      }
+
+      if (!newpass || !newpass2) {
+        handleError('New passwords do not match!');
+        return false;
+      }
+
+      sendPost(changePasswordForm.getAttribute('action'), { username, oldpass, newpass, newpass2 });
       return false;
     });
   }

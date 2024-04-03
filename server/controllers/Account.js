@@ -56,9 +56,40 @@ const signup = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  const username = `${req.body.username}`;
+  const oldpass = `${req.body.oldpass}`;
+  const newpass = `${req.body.newpass}`;
+  const newpass2 = `${req.body.newpass2}`;
+
+  if (!username || !oldpass || !newpass || !newpass2) {
+    return res.status(400).json({ error: 'All fields are required!' });
+  }
+
+  if (newpass !== newpass2) {
+    return res.status(400).json({ error: 'New passwords do not match!' });
+  }
+
+  try {
+    await Account.changePassword(username, oldpass, newpass, (err, account) => {
+      if (err || !account) {
+        return res.status(401).json({ error: 'Wrong username or password!' });
+      }
+
+      req.session.account = Account.toAPI(account);
+
+      return res.json({ redirect: '/maker' });
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'An error occurred!' });
+  }
+};
+
 module.exports = {
   loginPage,
   login,
   logout,
   signup,
+  changePassword,
 };
