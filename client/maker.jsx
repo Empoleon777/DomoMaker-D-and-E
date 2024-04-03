@@ -118,7 +118,7 @@ const loadDomosFromServer = async () => {
 }
 
 const init = () => {
-    const changePasswordButton = document.getElementById('changePasswordButton');
+    const changePasswordButton = document.getElementById('changePassword');
 
     changePasswordButton.addEventListener('click', (e) => {
         e.preventDefault();

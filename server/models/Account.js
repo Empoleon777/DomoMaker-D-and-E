@@ -88,10 +88,12 @@ AccountSchema.statics.changePassword = async (username, oldpassword, newpassword
     try {
       await AccountModel.findOneAndUpdate({ username }, { password: newPassHash }).exec();
       return callback(null, doc);
-    } catch (err) {
+    }
+    catch (err) {
       return callback(err);
     }
-  } catch (err) {
+  }
+  catch (err) {
     return callback(err);
   }
 };
