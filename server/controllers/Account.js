@@ -78,9 +78,11 @@ const changePassword = async (req, res) => {
 
       req.session.account = Account.toAPI(account);
 
-      return res.json({ redirect: '/maker' });
+      logout();
+      return res.json({ redirect: '/login' });
     });
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'An error occurred!' });
   }
@@ -91,5 +93,5 @@ module.exports = {
   login,
   logout,
   signup,
-  changePassword
+  changePassword,
 };

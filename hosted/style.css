@@ -148,7 +148,10 @@ nav:nth-child(1) {
 
 #user,
 #pass,
-#pass2 {
+#pass2,
+#oldpass,
+#newpass,
+#newpass2 {
     text-align: center;
     font-size: 1.1em;
     width: 180px;
@@ -157,7 +160,10 @@ nav:nth-child(1) {
 
 #user:focus,
 #pass:focus,
-#pass2:focus {
+#pass2:focus
+#oldpass:focus,
+#newpass:focus,
+#newpass2:focus {
     outline: none;
     box-shadow: 0px 0px 1px 1px #55acee;
 }
