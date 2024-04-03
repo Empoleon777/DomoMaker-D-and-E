@@ -91,5 +91,5 @@ module.exports = {
   login,
   logout,
   signup,
-  changePassword,
+  changePassword
 };
