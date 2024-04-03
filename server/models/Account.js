@@ -84,8 +84,13 @@ AccountSchema.statics.changePassword = async (username, oldpassword, newpassword
       return callback();
     }
 
-    doc.password = await AccountSchema.statics.generateHash(newpassword);
-    return callback(null, doc);
+    const newPassHash = await AccountSchema.statics.generateHash(newpassword);
+    try {
+      await AccountModel.findOneAndUpdate({ username }, { password: newPassHash }).exec();
+      return callback(null, doc);
+    } catch (err) {
+      return callback(err);
+    }
   } catch (err) {
     return callback(err);
   }
