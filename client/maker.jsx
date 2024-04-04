@@ -22,7 +22,7 @@ const deleteDomo = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    
+    helper.sendDelete(e.target.action);
 }
 
 const DomoForm = (props) => {
