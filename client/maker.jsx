@@ -18,6 +18,13 @@ const handleDomo = (e) => {
     return false;
 }
 
+const deleteDomo = (e) => {
+    e.preventDefault();
+    helper.hideError();
+
+    
+}
+
 const DomoForm = (props) => {
     return (
         <form id="domoForm"
@@ -51,6 +58,7 @@ const DomoList = (props) => {
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
                 <h3 className="domoName"> Name: {domo.name} </h3>
                 <h3 className="domoAge"> Age: {domo.age} </h3>
+                <button className="deleteDomo" onClick={deleteDomo}>Delete</button>
             </div>
         );
     });

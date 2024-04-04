@@ -295,6 +295,11 @@ h3.domoAge {
     font-size: 1.5em;
 }
 
+.deleteDomo {
+    /* width: 
+    height: 250px; */
+}
+
 .domo:first-child {
     margin-top: 10px;
 }

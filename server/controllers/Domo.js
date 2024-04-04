@@ -40,8 +40,13 @@ const getDomos = async (req, res) => {
   }
 };
 
+const deleteDomo = () => {
+
+}
+
 module.exports = {
   makerPage,
   makeDomo,
   getDomos,
+  deleteDomo
 };
