@@ -22,10 +22,14 @@ const deleteDomo = async (e, domo) => {
     e.preventDefault();
     helper.hideError();
 
-    const response = await fetch(`/deleteDomos?_id=${domo.id}`, {
+    // console.log(domo);
+
+    const response = await fetch(`/deleteDomo?_id=${domo._id}`, {
         method: 'DELETE',
     });
     const data = await response.json();
+
+    loadDomosFromServer();
 
     return false;
 }
