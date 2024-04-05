@@ -14,15 +14,20 @@ const handleDomo = (e) => {
         return false;
     }
 
-    helper.sendPost(e.target.action, { name, age });
+    helper.sendPost(e.target.action, { name, age }, loadDomosFromServer)
     return false;
 }
 
-const deleteDomo = (e) => {
+const deleteDomo = async (e, domo) => {
     e.preventDefault();
     helper.hideError();
 
-    helper.sendDelete(e.target.action);
+    const response = await fetch(`/deleteDomos?_id=${domo.id}`, {
+        method: 'DELETE',
+    });
+    const data = await response.json();
+
+    return false;
 }
 
 const DomoForm = (props) => {
@@ -58,7 +63,7 @@ const DomoList = (props) => {
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
                 <h3 className="domoName"> Name: {domo.name} </h3>
                 <h3 className="domoAge"> Age: {domo.age} </h3>
-                <button className="deleteDomo" onClick={deleteDomo}>Delete</button>
+                <button className="deleteDomo" onClick={(e) => deleteDomo(e, domo)}>Delete</button>
             </div>
         );
     });
