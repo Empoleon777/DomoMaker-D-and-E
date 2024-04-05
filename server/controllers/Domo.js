@@ -19,7 +19,8 @@ const makeDomo = async (req, res) => {
     const newDomo = new Domo(domoData);
     await newDomo.save();
     return res.status(201).json({ name: newDomo.name, age: newDomo.age });
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
     if (err.code === 11000) {
       return res.status(400).json({ error: 'Domo already exists!' });
@@ -34,7 +35,8 @@ const getDomos = async (req, res) => {
     const docs = await Domo.find(query).select('name age').lean().exec();
 
     return res.json({ domos: docs });
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'Error retrieving domos!' });
   }
@@ -46,7 +48,8 @@ const deleteDomo = async (req, res) => {
       owner: req.session.account._id, _id: req.query._id,
     }).exec();
     return res.json({ domos: docs });
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'Error deleting domo!' });
   }
